@@ -34,7 +34,12 @@ except Exception as e:
     logger.error(f"Failed to import main application: {e}")
     # Create a minimal fallback app
     from flask import Flask
-    application = Flask(__name__)
+    app = Flask(
+    __name__,
+    template_folder=os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "templates")),
+    static_folder=os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "static"))
+    )
+
     
     @application.route('/')
     def fallback():
