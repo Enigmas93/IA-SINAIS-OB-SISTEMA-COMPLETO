@@ -13,6 +13,7 @@ import logging
 from apscheduler.schedulers.background import BackgroundScheduler
 import atexit
 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 # Add current directory to Python path for imports
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -30,8 +31,8 @@ PARENT_DIR = os.path.abspath(os.path.join(BASE_DIR, os.pardir))
 
 app = Flask(
     __name__,
-    template_folder=os.path.join(PARENT_DIR, 'templates'),
-    static_folder=os.path.join(PARENT_DIR, 'static')
+    template_folder=os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "templates")),
+    static_folder=os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "static"))
 )
 
 # Log template and static directories for debugging
@@ -134,7 +135,7 @@ except ImportError as e:
 
 # Import and register routes blueprint
 try:
-    from routes import api, main
+    from src.routes import api, main
     app.register_blueprint(api, url_prefix='/api')
     app.register_blueprint(main)
     
