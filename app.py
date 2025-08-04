@@ -112,7 +112,7 @@ except ImportError as e:
 
 # Import services with robust fallback system
 try:
-    from src.services import IQOptionService, SignalAnalyzer, TradingBot, MLService
+    from services import IQOptionService, SignalAnalyzer, TradingBot, MLService
     services_available = True
     logger.info("Services imported successfully")
 except ImportError as e:
@@ -135,7 +135,7 @@ except ImportError as e:
 
 # Import and register routes blueprint
 try:
-    from src.routes import api, main
+    from routes import api, main
     app.register_blueprint(api, url_prefix='/api')
     app.register_blueprint(main)
     
