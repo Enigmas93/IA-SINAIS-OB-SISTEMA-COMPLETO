@@ -112,7 +112,7 @@ except ImportError as e:
 
 # Import services with robust fallback system
 try:
-    from services import IQOptionService, SignalAnalyzer, TradingBot, MLService
+    from src.services import IQOptionService, SignalAnalyzer, TradingBot, MLService
     services_available = True
     logger.info("Services imported successfully")
 except ImportError as e:
